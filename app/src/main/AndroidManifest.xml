@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTasks">
         <activity
+            android:name=".MainActivity2"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Transparent">
+
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:screenOrientation="nosensor">
             <intent-filter>
