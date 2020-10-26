@@ -1,4 +1,4 @@
-package com.ahmedabdelmohsen.mytasks;
+package com.ahmedabdelmohsen.mytasks.main.destinations;
 
 import android.os.Bundle;
 
@@ -10,17 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ahmedabdelmohsen.mytasks.databinding.FragmentThisWeekBinding;
+import com.ahmedabdelmohsen.mytasks.databinding.FragmentTomorrowBinding;
 
-public class ThisWeekFragment extends Fragment {
-    private FragmentThisWeekBinding binding;
+
+public class TomorrowFragment extends Fragment {
+    private FragmentTomorrowBinding binding;
     private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentThisWeekBinding.inflate(inflater, container, false);
+        binding = FragmentTomorrowBinding.inflate(inflater, container, false);
         view = binding.getRoot();
         return view;
     }

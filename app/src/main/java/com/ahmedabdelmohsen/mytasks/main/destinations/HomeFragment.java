@@ -1,6 +1,5 @@
-package com.ahmedabdelmohsen.mytasks;
+package com.ahmedabdelmohsen.mytasks.main.destinations;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,9 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ahmedabdelmohsen.mytasks.R;
 import com.ahmedabdelmohsen.mytasks.databinding.FragmentHomeBinding;
-
-import java.util.Objects;
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
