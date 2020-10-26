@@ -8,17 +8,15 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ahmedabdelmohsen.mytasks.MainActivity2;
+import com.ahmedabdelmohsen.mytasks.EditActivity;
 import com.ahmedabdelmohsen.mytasks.R;
 import com.ahmedabdelmohsen.mytasks.databinding.FragmentHomeBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.sergiocasero.revealfab.RevealFAB;
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
@@ -94,6 +92,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    //start Edit Activity Reveal
     public void startReveal() {
         final FloatingActionButton button = requireActivity().findViewById(R.id.fab);
 
@@ -101,7 +100,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(requireActivity(), MainActivity2.class));
+                startActivity(new Intent(requireActivity(), EditActivity.class));
             }
 
         });

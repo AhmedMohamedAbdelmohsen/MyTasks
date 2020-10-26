@@ -104,21 +104,21 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="110dp"
-        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:layout_height="90dp"
         android:background="@drawable/radius_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="20dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_margin="15dp"
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/darken_purple"
-        app:fabCustomSize="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="20dp" />
+        app:fabCustomSize="45dp"
+        app:layout_constraintBottom_toBottomOf="@id/view"
+        app:layout_constraintEnd_toEndOf="@id/view"
+        app:maxImageSize="15dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

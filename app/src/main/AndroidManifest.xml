@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTasks">
         <activity
-            android:name=".MainActivity2"
+            android:name=".EditActivity"
             android:launchMode="singleTask"
             android:theme="@style/Theme.Transparent">
 

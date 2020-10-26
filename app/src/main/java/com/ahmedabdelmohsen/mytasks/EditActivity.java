@@ -11,13 +11,13 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewTreeObserver;
 
-public class MainActivity2 extends AppCompatActivity {
+public class EditActivity extends AppCompatActivity {
     private View background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_edit);
         background = findViewById(R.id.background);
 
         if (savedInstanceState == null) {
@@ -54,7 +54,7 @@ public class MainActivity2 extends AppCompatActivity {
                 0,
                 finalRadius);
 
-        circularReveal.setDuration(1000);
+        circularReveal.setDuration(700);
         background.setVisibility(View.VISIBLE);
         circularReveal.start();
 
@@ -99,7 +99,7 @@ public class MainActivity2 extends AppCompatActivity {
 
                 }
             });
-            circularReveal.setDuration(1000);
+            circularReveal.setDuration(700);
             circularReveal.start();
         }
         else {
