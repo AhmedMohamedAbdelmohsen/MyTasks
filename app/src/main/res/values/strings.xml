@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MyTasks</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mytasks">MyTasks</string>
+    <string name="hello">Hello there,\nWelcome\nOnBoard!</string>
+    <string name="start">Start</string>
+    <string name="tasks">Tasks</string>
+    <string name="today">TODAY</string>
+    <string name="tomorrow">TOMORROW</string>
+    <string name="this_week">THIS WEEK</string>
+</resources>
