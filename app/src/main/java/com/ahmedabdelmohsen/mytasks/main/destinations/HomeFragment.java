@@ -8,10 +8,15 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.BounceInterpolator;
 
 import com.ahmedabdelmohsen.mytasks.EditActivity;
 import com.ahmedabdelmohsen.mytasks.R;
@@ -49,6 +54,7 @@ public class HomeFragment extends Fragment {
         getTomorrowFragment();
         getThisWeekFragment();
         startReveal();
+        openMenu();
     }
 
     //set fragment container Today by default
@@ -103,6 +109,17 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(requireActivity(), EditActivity.class));
             }
 
+        });
+    }
+
+    //start menu fragment
+    public void openMenu() {
+        binding.ibtnMenu.setOnClickListener(v -> {
+            //set animation to menu button icon
+            Animation animation = AnimationUtils.loadAnimation(requireActivity(), R.anim.bounce);
+            binding.ibtnMenu.setAnimation(animation);
+
+            Navigation.findNavController(v).navigate(HomeFragmentDirections.actionHomeFragmentToMenuFragment());
         });
     }
 }

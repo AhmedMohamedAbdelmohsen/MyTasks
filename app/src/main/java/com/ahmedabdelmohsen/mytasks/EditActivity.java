@@ -54,7 +54,7 @@ public class EditActivity extends AppCompatActivity {
                 0,
                 finalRadius);
 
-        circularReveal.setDuration(700);
+        circularReveal.setDuration(500);
         background.setVisibility(View.VISIBLE);
         circularReveal.start();
 
@@ -99,7 +99,7 @@ public class EditActivity extends AppCompatActivity {
 
                 }
             });
-            circularReveal.setDuration(700);
+            circularReveal.setDuration(500);
             circularReveal.start();
         }
         else {
