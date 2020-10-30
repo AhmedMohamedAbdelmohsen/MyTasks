@@ -11,13 +11,13 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewTreeObserver;
 
-public class EditActivity extends AppCompatActivity {
+public class AddTaskActivity extends AppCompatActivity {
     private View background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
+        setContentView(R.layout.activity_add);
         background = findViewById(R.id.background);
 
         if (savedInstanceState == null) {

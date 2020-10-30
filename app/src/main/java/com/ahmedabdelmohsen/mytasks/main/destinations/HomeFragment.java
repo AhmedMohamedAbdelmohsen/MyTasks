@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -16,9 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.BounceInterpolator;
 
-import com.ahmedabdelmohsen.mytasks.EditActivity;
+import com.ahmedabdelmohsen.mytasks.AddTaskActivity;
 import com.ahmedabdelmohsen.mytasks.R;
 import com.ahmedabdelmohsen.mytasks.databinding.FragmentHomeBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -71,7 +69,9 @@ public class HomeFragment extends Fragment {
             binding.tomorrow.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
             binding.thisWeek.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
 
-            fragmentManager.beginTransaction().replace(R.id.fragment_container, todayFragment).commit();
+            fragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.fad_in, R.anim.fad_out)
+                    .replace(R.id.fragment_container, todayFragment).commit();
         });
     }
 
@@ -82,7 +82,9 @@ public class HomeFragment extends Fragment {
             binding.today.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
             binding.thisWeek.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
 
-            fragmentManager.beginTransaction().replace(R.id.fragment_container, tomorrowFragment).commit();
+            fragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.fad_in, R.anim.fad_out)
+                    .replace(R.id.fragment_container, tomorrowFragment).commit();
         });
     }
 
@@ -94,7 +96,9 @@ public class HomeFragment extends Fragment {
             binding.tomorrow.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
             binding.today.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
 
-            fragmentManager.beginTransaction().replace(R.id.fragment_container, thisWeekFragment).commit();
+            fragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.fad_in, R.anim.fad_out)
+                    .replace(R.id.fragment_container, thisWeekFragment).commit();
         });
     }
 
@@ -106,7 +110,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(requireActivity(), EditActivity.class));
+                startActivity(new Intent(requireActivity(), AddTaskActivity.class));
             }
 
         });

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addtask_nav_graph"
+    app:startDestination="@id/blankFragment">
+
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.ahmedabdelmohsen.mytasks.main.destinations.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank">
+        <action
+            android:id="@+id/action_blankFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment"
+            app:enterAnim="@anim/slide_in_down"
+            app:exitAnim="@anim/slide_out_up"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_down"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.ahmedabdelmohsen.mytasks.main.destinations.AddTaskFragment"
+        android:label="fragment_add_task"
+        tools:layout="@layout/fragment_add_task" >
+        <action
+            android:id="@+id/action_addTaskFragment_to_successfullAddFragment"
+            app:destination="@id/successfullAddFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_down"
+            app:popExitAnim="@anim/slide_out_up" />
+    </fragment>
+    <fragment
+        android:id="@+id/successfullAddFragment"
+        android:name="com.ahmedabdelmohsen.mytasks.main.destinations.SuccessfullAddFragment"
+        android:label="fragment_successfull_add"
+        tools:layout="@layout/fragment_successfull_add" />
+</navigation>

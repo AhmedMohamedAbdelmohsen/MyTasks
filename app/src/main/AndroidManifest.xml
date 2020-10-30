@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ahmedabdelmohsen.mytasks">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -10,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTasks">
         <activity
-            android:name=".EditActivity"
+            android:name=".AddTaskActivity"
             android:launchMode="singleTask"
             android:theme="@style/Theme.Transparent">
 

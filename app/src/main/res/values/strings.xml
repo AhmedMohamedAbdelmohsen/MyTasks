@@ -9,4 +9,13 @@
     <string name="today">TODAY</string>
     <string name="tomorrow">TOMORROW</string>
     <string name="this_week">THIS WEEK</string>
+    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry</string>
+    <string name="add_new">ADD new</string>
+    <string name="enter_task">Enter Task</string>
+    <string name="add_task">Add Task</string>
+    <string name="select_date">Select Date</string>
+    <string name="tomorrow_lower">Tomorrow</string>
+    <string name="today_lower">Today</string>
+    <string name="when">WHEN</string>
+    <string name="task_added_successfully">Task added successfully!</string>
 </resources>

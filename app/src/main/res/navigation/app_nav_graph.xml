@@ -50,9 +50,9 @@
         tools:layout="@layout/fragment_today" />
     <activity
         android:id="@+id/editActivity"
-        android:name="com.ahmedabdelmohsen.mytasks.EditActivity"
+        android:name="com.ahmedabdelmohsen.mytasks.AddTaskActivity"
         android:label="activity_edit"
-        tools:layout="@layout/activity_edit" />
+        tools:layout="@layout/activity_add" />
     <fragment
         android:id="@+id/tomorrowFragment"
         android:name="com.ahmedabdelmohsen.mytasks.main.destinations.TomorrowFragment"
