@@ -11,8 +11,7 @@ public class TaskModel {
     private String date;
     private boolean status;
 
-    public TaskModel(int id, String body, String date, boolean status) {
-        this.id = id;
+    public TaskModel(String body, String date, boolean status) {
         this.body = body;
         this.date = date;
         this.status = status;

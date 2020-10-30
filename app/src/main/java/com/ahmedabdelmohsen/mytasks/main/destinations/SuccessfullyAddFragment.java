@@ -11,12 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ahmedabdelmohsen.mytasks.R;
-import com.ahmedabdelmohsen.mytasks.databinding.FragmentSuccessfullAddBinding;
+import com.ahmedabdelmohsen.mytasks.databinding.FragmentSuccessfullyAddBinding;
 
-public class SuccessfullAddFragment extends Fragment {
+public class SuccessfullyAddFragment extends Fragment {
 
-    private FragmentSuccessfullAddBinding binding;
+    private FragmentSuccessfullyAddBinding binding;
     private View view;
     private Handler handler = new Handler();
 
@@ -24,7 +23,7 @@ public class SuccessfullAddFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentSuccessfullAddBinding.inflate(inflater, container, false);
+        binding = FragmentSuccessfullyAddBinding.inflate(inflater, container, false);
         view = binding.getRoot();
         return view;
     }

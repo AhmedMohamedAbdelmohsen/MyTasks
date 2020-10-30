@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.ahmedabdelmohsen.mytasks.R;
 import com.ahmedabdelmohsen.mytasks.databinding.FragmentMenuBinding;
@@ -31,5 +33,15 @@ public class MenuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        closeMenu();
+    }
+
+    public void closeMenu() {
+        binding.ibtnCloseMenu.setOnClickListener(v -> {
+            Animation animation = AnimationUtils.loadAnimation(requireActivity(), R.anim.bounce);
+            binding.ibtnCloseMenu.setAnimation(animation);
+
+            requireActivity().onBackPressed();
+        });
     }
 }

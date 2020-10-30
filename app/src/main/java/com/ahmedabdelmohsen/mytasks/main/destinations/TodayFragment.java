@@ -15,12 +15,15 @@ import android.view.ViewGroup;
 
 import com.ahmedabdelmohsen.mytasks.TasksListAdapter;
 import com.ahmedabdelmohsen.mytasks.databinding.FragmentTodayBinding;
+import com.ahmedabdelmohsen.mytasks.main.viewmodel.TasksViewModel;
 import com.ahmedabdelmohsen.mytasks.pojo.TaskModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -30,6 +33,7 @@ public class TodayFragment extends Fragment {
     private View view;
     private ArrayList<TaskModel> list = new ArrayList<>();
     private TasksListAdapter adapter = new TasksListAdapter();
+    private TasksViewModel viewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,24 +47,37 @@ public class TodayFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getAllTasksToday();
+    }
 
-        setData();
-
+    public void getAllTasksToday() {
+        viewModel = new ViewModelProvider(requireActivity()).get(TasksViewModel.class);
         binding.rvToday.setLayoutManager(new LinearLayoutManager(requireActivity()));
         binding.rvToday.setHasFixedSize(true);
         binding.rvToday.setAdapter(adapter);
-        adapter.setList(list);
-    }
 
-    public void setData() {
-        list.add(new TaskModel(1, "Finish My Work on the new app", "1/7/2020", false));
-        list.add(new TaskModel(2, "Sleep and take a rest", "11/7/2020", false));
-        list.add(new TaskModel(3, "Drink My Coffee", "20/7/2020", true));
-        list.add(new TaskModel(4, "Play Football with my friends", "21/7/2020", false));
-        list.add(new TaskModel(5, "Stay with My Family and watch TV", "15/7/2020", true));
-        list.add(new TaskModel(6, "Design a new app and UX & UI", "17/7/2020", true));
-        list.add(new TaskModel(7, "Upload My App on Play Store as soon as", "10/7/2020", true));
-        list.add(new TaskModel(8, "Finish My Work on the new app", "19/7/2020", false));
+        viewModel.getAllTasks().subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<TaskModel>>() {
+                    @Override
+                    public void onSubscribe(@io.reactivex.annotations.NonNull Disposable d) {
 
+                    }
+
+                    @Override
+                    public void onNext(@io.reactivex.annotations.NonNull List<TaskModel> taskModels) {
+                        adapter.setList((ArrayList<TaskModel>) taskModels);
+                    }
+
+                    @Override
+                    public void onError(@io.reactivex.annotations.NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

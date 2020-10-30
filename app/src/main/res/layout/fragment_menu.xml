@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/ibtn_menu"
+        android:id="@+id/ibtn_close_menu"
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_margin="20dp"

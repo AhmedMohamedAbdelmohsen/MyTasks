@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/successfullAddFragment"
-        android:name="com.ahmedabdelmohsen.mytasks.main.destinations.SuccessfullAddFragment"
+        android:name="com.ahmedabdelmohsen.mytasks.main.destinations.SuccessfullyAddFragment"
         android:label="fragment_successfull_add"
-        tools:layout="@layout/fragment_successfull_add" />
+        tools:layout="@layout/fragment_successfully_add" />
 </navigation>
