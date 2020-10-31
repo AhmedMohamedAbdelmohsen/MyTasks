@@ -23,7 +23,6 @@ public class SplashFragment extends Fragment {
     private FragmentSplashBinding binding;
     private View view;
     private Handler handler = new Handler();
-    private FragmentManager fragmentManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,14 +37,12 @@ public class SplashFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        fragmentManager = requireActivity().getSupportFragmentManager();
         setPostDelayed(view);
     }
 
     public void setPostDelayed(View view) {
         handler.postDelayed(() -> {
-            NavDirections action = SplashFragmentDirections.actionSplashFragmentToHomeFragment();
-            Navigation.findNavController(view).navigate(action);
+            Navigation.findNavController(view).navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment());
         }, 3000);
     }
 }
