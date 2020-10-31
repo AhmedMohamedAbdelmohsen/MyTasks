@@ -4,7 +4,6 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 
 import com.ahmedabdelmohsen.mytasks.data.Repository;
 import com.ahmedabdelmohsen.mytasks.pojo.TaskModel;
@@ -26,7 +25,11 @@ public class TasksViewModel extends AndroidViewModel {
         return repository.addTask(taskModel);
     }
 
-    public Observable<List<TaskModel>> getAllTasks() {
-        return repository.getAllTasks();
+    public Observable<List<TaskModel>> getAllTasksDate(String date) {
+        return repository.getAllTasksByDate(date);
+    }
+
+    public Observable<List<TaskModel>> getAllTasksByOtherDate(String today, String tomorrow) {
+        return repository.getAllTasksByOtherDate(today, tomorrow);
     }
 }

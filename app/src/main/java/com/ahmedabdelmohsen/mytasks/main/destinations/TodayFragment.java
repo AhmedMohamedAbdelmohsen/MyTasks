@@ -1,6 +1,5 @@
 package com.ahmedabdelmohsen.mytasks.main.destinations;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,20 +17,20 @@ import com.ahmedabdelmohsen.mytasks.databinding.FragmentTodayBinding;
 import com.ahmedabdelmohsen.mytasks.main.viewmodel.TasksViewModel;
 import com.ahmedabdelmohsen.mytasks.pojo.TaskModel;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 
 public class TodayFragment extends Fragment {
     private FragmentTodayBinding binding;
     private View view;
-    private ArrayList<TaskModel> list = new ArrayList<>();
     private TasksListAdapter adapter = new TasksListAdapter();
     private TasksViewModel viewModel;
 
@@ -56,7 +55,10 @@ public class TodayFragment extends Fragment {
         binding.rvToday.setHasFixedSize(true);
         binding.rvToday.setAdapter(adapter);
 
-        viewModel.getAllTasks().subscribeOn(Schedulers.computation())
+        Calendar calendar = Calendar.getInstance();
+        String todayDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
+
+        viewModel.getAllTasksDate(todayDate).subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<TaskModel>>() {
                     @Override

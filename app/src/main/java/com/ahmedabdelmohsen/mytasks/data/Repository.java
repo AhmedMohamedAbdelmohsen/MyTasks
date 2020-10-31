@@ -2,8 +2,6 @@ package com.ahmedabdelmohsen.mytasks.data;
 
 import android.app.Application;
 
-import androidx.lifecycle.LiveData;
-
 import com.ahmedabdelmohsen.mytasks.pojo.TaskModel;
 
 import java.util.List;
@@ -23,7 +21,11 @@ public class Repository {
         return tasksDao.addTask(taskModel);
     }
 
-    public Observable<List<TaskModel>> getAllTasks() {
-        return tasksDao.getAllTasks();
+    public Observable<List<TaskModel>> getAllTasksByDate(String date) {
+        return tasksDao.getAllTasksByDate(date);
+    }
+
+    public Observable<List<TaskModel>> getAllTasksByOtherDate(String today, String tomorrow) {
+        return tasksDao.getAllTasksByOtherDate(today, tomorrow);
     }
 }

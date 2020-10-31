@@ -24,7 +24,10 @@ public interface TasksDao {
 //    @Query("select * from tasks_table where status =:status")
 //    public LiveData<List<TaskModel>> getAllTasksByStatus(boolean status);
 
-    @Query("select * from tasks_table")
-    Observable<List<TaskModel>> getAllTasks();
+    @Query("select * from tasks_table where date =:date")
+    Observable<List<TaskModel>> getAllTasksByDate(String date);
+
+    @Query("select * from tasks_table where date !=:today and date !=:tomorrow")
+    Observable<List<TaskModel>> getAllTasksByOtherDate(String today, String tomorrow);
 
 }
