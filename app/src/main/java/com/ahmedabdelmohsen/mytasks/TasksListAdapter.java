@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.TasksViewHolder> {
     private ArrayList<TaskModel> list = new ArrayList<>();
+    private boolean status;
 
     @NonNull
     @Override
@@ -26,14 +27,18 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Task
     public void onBindViewHolder(@NonNull TasksViewHolder holder, int position) {
 
         holder.body.setText(list.get(position).getBody());
+        status = list.get(position).isStatus();
 
-        boolean status = list.get(position).isStatus();
-        if (status) {
-            holder.body.setPaintFlags(holder.body.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        } else {
-            holder.body.setPaintFlags(holder.body.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-        }
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!status) {
+                    holder.body.setPaintFlags(holder.body.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                } else {
+                    holder.body.setPaintFlags(holder.body.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+                }
+            }
+        });
     }
 
     public void setList(ArrayList<TaskModel> list) {

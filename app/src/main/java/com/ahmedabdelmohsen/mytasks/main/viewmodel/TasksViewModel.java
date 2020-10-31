@@ -32,4 +32,8 @@ public class TasksViewModel extends AndroidViewModel {
     public Observable<List<TaskModel>> getAllTasksByOtherDate(String today, String tomorrow) {
         return repository.getAllTasksByOtherDate(today, tomorrow);
     }
+
+    public void update(boolean status, int id) {
+        repository.update(status, id);
+    }
 }

@@ -28,4 +28,9 @@ public class Repository {
     public Observable<List<TaskModel>> getAllTasksByOtherDate(String today, String tomorrow) {
         return tasksDao.getAllTasksByOtherDate(today, tomorrow);
     }
+
+    public void update(boolean status, int id) {
+        tasksDao.update(status, id);
+    }
+
 }

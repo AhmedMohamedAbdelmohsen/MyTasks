@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment {
         binding.today.setOnClickListener(v -> {
             binding.today.setTextColor(ContextCompat.getColor(requireActivity(), R.color.blue));
             binding.tomorrow.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
-            binding.thisWeek.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
+            binding.otherDays.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
 
             fragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.fad_in, R.anim.fad_out)
@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment {
         binding.tomorrow.setOnClickListener(v -> {
             binding.tomorrow.setTextColor(ContextCompat.getColor(requireActivity(), R.color.blue));
             binding.today.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
-            binding.thisWeek.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
+            binding.otherDays.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
 
             fragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.fad_in, R.anim.fad_out)
@@ -91,8 +91,8 @@ public class HomeFragment extends Fragment {
     //change fragment container to fragment This Week
     private void getThisWeekFragment() {
 
-        binding.thisWeek.setOnClickListener(v -> {
-            binding.thisWeek.setTextColor(ContextCompat.getColor(requireActivity(), R.color.blue));
+        binding.otherDays.setOnClickListener(v -> {
+            binding.otherDays.setTextColor(ContextCompat.getColor(requireActivity(), R.color.blue));
             binding.tomorrow.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
             binding.today.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
 

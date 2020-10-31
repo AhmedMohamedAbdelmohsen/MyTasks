@@ -8,7 +8,7 @@
     <string name="tasks">Tasks</string>
     <string name="today">TODAY</string>
     <string name="tomorrow">TOMORROW</string>
-    <string name="this_week">THIS WEEK</string>
+    <string name="other_days">Other Days</string>
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry</string>
     <string name="add_new">ADD new</string>
     <string name="enter_task">Enter Task</string>
