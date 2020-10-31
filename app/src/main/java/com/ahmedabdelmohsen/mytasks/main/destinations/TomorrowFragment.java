@@ -49,6 +49,7 @@ public class TomorrowFragment extends Fragment {
         getAllTasksTomorrow();
     }
 
+    //get all tomorrow tasks
     public void getAllTasksTomorrow() {
         viewModel = new ViewModelProvider(requireActivity()).get(TasksViewModel.class);
         binding.rvTomorrow.setLayoutManager(new LinearLayoutManager(requireActivity()));

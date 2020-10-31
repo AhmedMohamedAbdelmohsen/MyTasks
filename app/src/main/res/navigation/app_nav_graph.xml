@@ -40,9 +40,9 @@
         tools:layout="@layout/fragment_menu" />
     <fragment
         android:id="@+id/thisWeekFragment"
-        android:name="com.ahmedabdelmohsen.mytasks.main.destinations.ThisWeekFragment"
+        android:name="com.ahmedabdelmohsen.mytasks.main.destinations.OtherDaysFragment"
         android:label="fragment_this_week"
-        tools:layout="@layout/fragment_this_week" />
+        tools:layout="@layout/fragment_other_days" />
     <fragment
         android:id="@+id/todayFragment"
         android:name="com.ahmedabdelmohsen.mytasks.main.destinations.TodayFragment"

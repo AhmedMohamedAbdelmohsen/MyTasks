@@ -48,7 +48,7 @@ public class TodayFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         getAllTasksToday();
     }
-
+    //get all today tasks
     public void getAllTasksToday() {
         viewModel = new ViewModelProvider(requireActivity()).get(TasksViewModel.class);
         binding.rvToday.setLayoutManager(new LinearLayoutManager(requireActivity()));

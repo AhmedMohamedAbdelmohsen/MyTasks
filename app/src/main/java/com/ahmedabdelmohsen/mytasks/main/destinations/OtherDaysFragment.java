@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ahmedabdelmohsen.mytasks.TasksListAdapter;
-import com.ahmedabdelmohsen.mytasks.databinding.FragmentThisWeekBinding;
+import com.ahmedabdelmohsen.mytasks.databinding.FragmentOtherDaysBinding;
 import com.ahmedabdelmohsen.mytasks.main.viewmodel.TasksViewModel;
 import com.ahmedabdelmohsen.mytasks.pojo.TaskModel;
 
@@ -27,8 +27,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class ThisWeekFragment extends Fragment {
-    private FragmentThisWeekBinding binding;
+public class OtherDaysFragment extends Fragment {
+    private FragmentOtherDaysBinding binding;
     private View view;
     private TasksListAdapter adapter = new TasksListAdapter();
     private TasksViewModel viewModel;
@@ -37,7 +37,7 @@ public class ThisWeekFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentThisWeekBinding.inflate(inflater, container, false);
+        binding = FragmentOtherDaysBinding.inflate(inflater, container, false);
         view = binding.getRoot();
         return view;
     }
@@ -45,10 +45,10 @@ public class ThisWeekFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getAllTasksTomorrow();
+        getAllTasksInOtherDate();
     }
-
-    public void getAllTasksTomorrow() {
+    //get all other tasks
+    public void getAllTasksInOtherDate() {
         viewModel = new ViewModelProvider(requireActivity()).get(TasksViewModel.class);
         binding.rvThisWeek.setLayoutManager(new LinearLayoutManager(requireActivity()));
         binding.rvThisWeek.setHasFixedSize(true);

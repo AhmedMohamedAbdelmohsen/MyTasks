@@ -27,7 +27,7 @@ public class HomeFragment extends Fragment {
     private FragmentManager fragmentManager;
     private final TodayFragment todayFragment = new TodayFragment();
     private final TomorrowFragment tomorrowFragment = new TomorrowFragment();
-    private final ThisWeekFragment thisWeekFragment = new ThisWeekFragment();
+    private final OtherDaysFragment otherDaysFragment = new OtherDaysFragment();
 
     public HomeFragment() {
     }
@@ -98,7 +98,7 @@ public class HomeFragment extends Fragment {
 
             fragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.fad_in, R.anim.fad_out)
-                    .replace(R.id.fragment_container, thisWeekFragment).commit();
+                    .replace(R.id.fragment_container, otherDaysFragment).commit();
         });
     }
 
