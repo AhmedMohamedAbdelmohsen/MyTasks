@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.ahmedabdelmohsen.mytasks.TasksListAdapter;
 import com.ahmedabdelmohsen.mytasks.databinding.FragmentOtherDaysBinding;
@@ -27,10 +28,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class OtherDaysFragment extends Fragment {
+public class OtherDaysFragment extends Fragment implements TasksListAdapter.OnTaskClickListener {
     private FragmentOtherDaysBinding binding;
     private View view;
-    private TasksListAdapter adapter = new TasksListAdapter();
+    private TasksListAdapter adapter = new TasksListAdapter(this);
     private TasksViewModel viewModel;
 
     @Override
@@ -47,11 +48,12 @@ public class OtherDaysFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         getAllTasksInOtherDate();
     }
+
     //get all other tasks
     public void getAllTasksInOtherDate() {
         viewModel = new ViewModelProvider(requireActivity()).get(TasksViewModel.class);
         binding.rvThisWeek.setLayoutManager(new LinearLayoutManager(requireActivity()));
-        binding.rvThisWeek.setHasFixedSize(true);
+        binding.rvThisWeek.setHasFixedSize(false);
         binding.rvThisWeek.setAdapter(adapter);
 
         Calendar calendar = Calendar.getInstance();
@@ -83,5 +85,11 @@ public class OtherDaysFragment extends Fragment {
 
                     }
                 });
+    }
+
+    @Override
+    public void onTaskClick(int position, ArrayList<TaskModel> list) {
+        Toast.makeText(requireActivity(), "item: " + position, Toast.LENGTH_SHORT).show();
+
     }
 }

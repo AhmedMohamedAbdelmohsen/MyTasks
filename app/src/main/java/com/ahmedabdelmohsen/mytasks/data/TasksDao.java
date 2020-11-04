@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.ahmedabdelmohsen.mytasks.pojo.TaskModel;
 
@@ -31,6 +32,8 @@ public interface TasksDao {
     Observable<List<TaskModel>> getAllTasksByOtherDate(String today, String tomorrow);
 
     @Query("update tasks_table set status=:status where id = :id")
-    void update(boolean status, int id);
+    Completable update(boolean status, int id);
 
+    @Update()
+    Completable updateData(TaskModel taskModel);
 }

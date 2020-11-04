@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.ahmedabdelmohsen.mytasks.TasksListAdapter;
 import com.ahmedabdelmohsen.mytasks.databinding.FragmentTomorrowBinding;
@@ -22,16 +23,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import io.reactivex.CompletableObserver;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 
-public class TomorrowFragment extends Fragment {
+public class TomorrowFragment extends Fragment implements TasksListAdapter.OnTaskClickListener {
     private FragmentTomorrowBinding binding;
     private View view;
-    private TasksListAdapter adapter = new TasksListAdapter();
+    private TasksListAdapter adapter = new TasksListAdapter(this);
     private TasksViewModel viewModel;
 
     @Override
@@ -53,7 +55,7 @@ public class TomorrowFragment extends Fragment {
     public void getAllTasksTomorrow() {
         viewModel = new ViewModelProvider(requireActivity()).get(TasksViewModel.class);
         binding.rvTomorrow.setLayoutManager(new LinearLayoutManager(requireActivity()));
-        binding.rvTomorrow.setHasFixedSize(true);
+        binding.rvTomorrow.setHasFixedSize(false);
         binding.rvTomorrow.setAdapter(adapter);
 
         Calendar calendar = Calendar.getInstance();
@@ -83,5 +85,11 @@ public class TomorrowFragment extends Fragment {
 
                     }
                 });
+    }
+
+    @Override
+    public void onTaskClick(int position, ArrayList<TaskModel> list) {
+        Toast.makeText(requireActivity(), "item: " + position, Toast.LENGTH_SHORT).show();
+
     }
 }

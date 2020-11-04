@@ -58,6 +58,7 @@ public class HomeFragment extends Fragment {
     //set fragment container Today by default
     private void setDefaultFragmentContainer(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
+            fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             fragmentManager.beginTransaction().replace(R.id.fragment_container, todayFragment).commit();
         }
     }
@@ -68,6 +69,7 @@ public class HomeFragment extends Fragment {
             binding.today.setTextColor(ContextCompat.getColor(requireActivity(), R.color.blue));
             binding.tomorrow.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
             binding.otherDays.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
+            fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
             fragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.fad_in, R.anim.fad_out)
@@ -81,6 +83,7 @@ public class HomeFragment extends Fragment {
             binding.tomorrow.setTextColor(ContextCompat.getColor(requireActivity(), R.color.blue));
             binding.today.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
             binding.otherDays.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
+            fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
             fragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.fad_in, R.anim.fad_out)
@@ -95,6 +98,7 @@ public class HomeFragment extends Fragment {
             binding.otherDays.setTextColor(ContextCompat.getColor(requireActivity(), R.color.blue));
             binding.tomorrow.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
             binding.today.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey));
+            fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
             fragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.fad_in, R.anim.fad_out)

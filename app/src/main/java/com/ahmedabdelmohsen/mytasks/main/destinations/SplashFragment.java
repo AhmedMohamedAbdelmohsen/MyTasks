@@ -41,7 +41,7 @@ public class SplashFragment extends Fragment {
     }
 
     public void setPostDelayed(View view) {
-        handler.postDelayed(() -> {
+        new Handler().postDelayed(() -> {
             Navigation.findNavController(view).navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment());
         }, 3000);
     }

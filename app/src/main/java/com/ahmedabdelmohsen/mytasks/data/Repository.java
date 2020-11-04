@@ -29,8 +29,13 @@ public class Repository {
         return tasksDao.getAllTasksByOtherDate(today, tomorrow);
     }
 
-    public void update(boolean status, int id) {
-        tasksDao.update(status, id);
+    public Completable update(boolean status, int id) {
+        return tasksDao.update(status, id);
     }
+
+    public Completable updateData(TaskModel taskModel) {
+        return tasksDao.updateData(taskModel);
+    }
+
 
 }
