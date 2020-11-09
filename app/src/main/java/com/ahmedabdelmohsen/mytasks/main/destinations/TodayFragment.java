@@ -95,10 +95,6 @@ public class TodayFragment extends Fragment implements InterfaceRecyclerViewItem
                 });
     }
 
-    private void onnext(@io.reactivex.annotations.NonNull ArrayList<TaskModel> taskModels) {
-
-    }
-
     @Override
     public void onTaskClick(int position) {
         boolean status = taskList.get(position).isStatus();
