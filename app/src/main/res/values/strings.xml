@@ -25,4 +25,8 @@
     <string name="about">About</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="license">License</string>
+    <string name="mar_2020">MAR 2020</string>
+    <string name="all_tasks">ALL TASKS</string>
+    <string name="pending">PENDING</string>
+    <string name="completed">COMPLETED</string>
 </resources>

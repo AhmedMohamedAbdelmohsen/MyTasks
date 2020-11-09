@@ -33,30 +33,14 @@
         android:id="@+id/menuFragment"
         android:name="com.ahmedabdelmohsen.mytasks.main.destinations.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" />
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/thisWeekFragment"
-        android:name="com.ahmedabdelmohsen.mytasks.main.destinations.OtherDaysFragment"
-        android:label="fragment_this_week"
-        tools:layout="@layout/fragment_other_days" />
-    <fragment
-        android:id="@+id/todayFragment"
-        android:name="com.ahmedabdelmohsen.mytasks.main.destinations.TodayFragment"
-        android:label="fragment_today"
-        tools:layout="@layout/fragment_today" />
-    <activity
-        android:id="@+id/editActivity"
-        android:name="com.ahmedabdelmohsen.mytasks.AddTaskActivity"
-        android:label="activity_edit"
-        tools:layout="@layout/activity_add" />
-    <fragment
-        android:id="@+id/tomorrowFragment"
-        android:name="com.ahmedabdelmohsen.mytasks.main.destinations.TomorrowFragment"
-        android:label="fragment_tomorrow"
-        tools:layout="@layout/fragment_tomorrow" />
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.ahmedabdelmohsen.mytasks.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+        android:id="@+id/dashboardFragment"
+        android:name="com.ahmedabdelmohsen.mytasks.main.destinations.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
 </navigation>

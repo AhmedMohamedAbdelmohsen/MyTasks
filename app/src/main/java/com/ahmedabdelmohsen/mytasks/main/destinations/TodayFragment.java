@@ -1,6 +1,5 @@
 package com.ahmedabdelmohsen.mytasks.main.destinations;
 
-import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,12 +8,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.ahmedabdelmohsen.mytasks.InterfaceRecyclerViewItem;
 import com.ahmedabdelmohsen.mytasks.TasksListAdapter;
 import com.ahmedabdelmohsen.mytasks.databinding.FragmentTodayBinding;
 import com.ahmedabdelmohsen.mytasks.main.viewmodel.TasksViewModel;
@@ -32,16 +30,18 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 
-public class TodayFragment extends Fragment implements TasksListAdapter.OnTaskClickListener {
+public class TodayFragment extends Fragment implements InterfaceRecyclerViewItem {
     private FragmentTodayBinding binding;
     private View view;
-    private TasksListAdapter adapter = new TasksListAdapter(this);
+    private TasksListAdapter adapter;
     private TasksViewModel viewModel;
-    private boolean status;
+    private InterfaceRecyclerViewItem listener;
+    private ArrayList<TaskModel> taskList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        listener = this;
         // Inflate the layout for this fragment
         binding = FragmentTodayBinding.inflate(inflater, container, false);
         view = binding.getRoot();
@@ -56,10 +56,11 @@ public class TodayFragment extends Fragment implements TasksListAdapter.OnTaskCl
 
     //get all today tasks
     public void getAllTasksToday() {
+
         viewModel = new ViewModelProvider(requireActivity()).get(TasksViewModel.class);
         binding.rvToday.setLayoutManager(new LinearLayoutManager(requireActivity()));
         binding.rvToday.setHasFixedSize(false);
-        binding.rvToday.setAdapter(adapter);
+
 
         Calendar calendar = Calendar.getInstance();
         String todayDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
@@ -74,9 +75,13 @@ public class TodayFragment extends Fragment implements TasksListAdapter.OnTaskCl
 
                     @Override
                     public void onNext(@io.reactivex.annotations.NonNull List<TaskModel> taskModels) {
-                        adapter.setList((ArrayList<TaskModel>) taskModels);
-                        adapter.notifyDataSetChanged();
+
+                        adapter = new TasksListAdapter(listener, (ArrayList<TaskModel>) taskModels);
+                        binding.rvToday.setAdapter(adapter);
+                        taskList = (ArrayList<TaskModel>) taskModels;
+                        //   onnext((ArrayList<TaskModel>) taskModels);
                     }
+
 
                     @Override
                     public void onError(@io.reactivex.annotations.NonNull Throwable e) {
@@ -90,14 +95,16 @@ public class TodayFragment extends Fragment implements TasksListAdapter.OnTaskCl
                 });
     }
 
-    @Override
-    public void onTaskClick(int position, ArrayList<TaskModel> list) {
-        status = list.get(position).isStatus();
-        Calendar calendar = Calendar.getInstance();
-        String todayDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
+    private void onnext(@io.reactivex.annotations.NonNull ArrayList<TaskModel> taskModels) {
 
+    }
+
+    @Override
+    public void onTaskClick(int position) {
+        boolean status = taskList.get(position).isStatus();
+        int id = taskList.get(position).getId();
         if (status) {
-            viewModel.update(false, list.get(position).getId())
+            viewModel.update(false, id)
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new CompletableObserver() {
@@ -108,7 +115,7 @@ public class TodayFragment extends Fragment implements TasksListAdapter.OnTaskCl
 
                         @Override
                         public void onComplete() {
-
+                            adapter.notifyDataSetChanged();
                         }
 
                         @Override
@@ -116,7 +123,7 @@ public class TodayFragment extends Fragment implements TasksListAdapter.OnTaskCl
                         }
                     });
         } else {
-            viewModel.update(true, list.get(position).getId())
+            viewModel.update(true, id)
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new CompletableObserver() {
@@ -127,7 +134,7 @@ public class TodayFragment extends Fragment implements TasksListAdapter.OnTaskCl
 
                         @Override
                         public void onComplete() {
-
+                            adapter.notifyDataSetChanged();
                         }
 
                         @Override

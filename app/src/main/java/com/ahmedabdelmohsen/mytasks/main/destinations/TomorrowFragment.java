@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.ahmedabdelmohsen.mytasks.InterfaceRecyclerViewItem;
 import com.ahmedabdelmohsen.mytasks.TasksListAdapter;
 import com.ahmedabdelmohsen.mytasks.databinding.FragmentTomorrowBinding;
 import com.ahmedabdelmohsen.mytasks.main.viewmodel.TasksViewModel;
@@ -30,15 +30,18 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 
-public class TomorrowFragment extends Fragment implements TasksListAdapter.OnTaskClickListener {
+public class TomorrowFragment extends Fragment implements InterfaceRecyclerViewItem {
     private FragmentTomorrowBinding binding;
     private View view;
-    private TasksListAdapter adapter = new TasksListAdapter(this);
+    private TasksListAdapter adapter;
     private TasksViewModel viewModel;
+    private InterfaceRecyclerViewItem listener;
+    private ArrayList<TaskModel> taskList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        listener = this;
         // Inflate the layout for this fragment
         binding = FragmentTomorrowBinding.inflate(inflater, container, false);
         view = binding.getRoot();
@@ -72,7 +75,9 @@ public class TomorrowFragment extends Fragment implements TasksListAdapter.OnTas
 
                     @Override
                     public void onNext(@io.reactivex.annotations.NonNull List<TaskModel> taskModels) {
-                        adapter.setList((ArrayList<TaskModel>) taskModels);
+                        adapter = new TasksListAdapter(listener, (ArrayList<TaskModel>) taskModels);
+                        binding.rvTomorrow.setAdapter(adapter);
+                        taskList = (ArrayList<TaskModel>) taskModels;
                     }
 
                     @Override
@@ -88,8 +93,48 @@ public class TomorrowFragment extends Fragment implements TasksListAdapter.OnTas
     }
 
     @Override
-    public void onTaskClick(int position, ArrayList<TaskModel> list) {
-        Toast.makeText(requireActivity(), "item: " + position, Toast.LENGTH_SHORT).show();
+    public void onTaskClick(int position) {
+        boolean status = taskList.get(position).isStatus();
+        int id = taskList.get(position).getId();
+        if (status) {
+            viewModel.update(false, id)
+                    .subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new CompletableObserver() {
+                        @Override
+                        public void onSubscribe(@io.reactivex.annotations.NonNull Disposable d) {
 
+                        }
+
+                        @Override
+                        public void onComplete() {
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onError(@io.reactivex.annotations.NonNull Throwable e) {
+                        }
+                    });
+        } else {
+            viewModel.update(true, id)
+                    .subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new CompletableObserver() {
+                        @Override
+                        public void onSubscribe(@io.reactivex.annotations.NonNull Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onError(@io.reactivex.annotations.NonNull Throwable e) {
+
+                        }
+                    });
+        }
     }
 }

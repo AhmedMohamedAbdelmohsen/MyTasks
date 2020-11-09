@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,7 @@ public class MenuFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         closeMenu();
+        onMenuItemSelected();
     }
 
     public void closeMenu() {
@@ -42,6 +44,12 @@ public class MenuFragment extends Fragment {
             binding.ibtnCloseMenu.setAnimation(animation);
 
             requireActivity().onBackPressed();
+        });
+    }
+
+    public void onMenuItemSelected() {
+        binding.tvDashboard.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(MenuFragmentDirections.actionMenuFragmentToDashboardFragment());
         });
     }
 }
