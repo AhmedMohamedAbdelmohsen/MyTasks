@@ -40,6 +40,13 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Task
             holder.body.setPaintFlags(holder.body.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
         }
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onTaskClick(task.getId(), task.isStatus());
+            }
+        });
+
     }
 
     @Override
@@ -54,12 +61,6 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Task
             super(itemView);
             body = itemView.findViewById(R.id.tv_task_body);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onTaskClick(getAdapterPosition());
-                }
-            });
         }
 
     }

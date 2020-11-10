@@ -31,6 +31,12 @@ public interface TasksDao {
     @Query("select * from tasks_table where date !=:today and date !=:tomorrow")
     Observable<List<TaskModel>> getAllTasksByOtherDate(String today, String tomorrow);
 
+    @Query("select * from tasks_table where status =:status")
+    Observable<List<TaskModel>> getAllTasksByStatus(boolean status);
+
+    @Query("select * from tasks_table")
+    Observable<List<TaskModel>> getAllTasks();
+
     @Query("update tasks_table set status=:status where id = :id")
     Completable update(boolean status, int id);
 

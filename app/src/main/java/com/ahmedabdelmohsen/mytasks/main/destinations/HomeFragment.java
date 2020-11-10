@@ -29,9 +29,6 @@ public class HomeFragment extends Fragment {
     private final TomorrowFragment tomorrowFragment = new TomorrowFragment();
     private final OtherDaysFragment otherDaysFragment = new OtherDaysFragment();
 
-    public HomeFragment() {
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,7 +47,7 @@ public class HomeFragment extends Fragment {
         setDefaultFragmentContainer(savedInstanceState);
         getTodayFragment();
         getTomorrowFragment();
-        getThisWeekFragment();
+        getOtherDaysFragment();
         startReveal();
         openMenu();
     }
@@ -92,7 +89,7 @@ public class HomeFragment extends Fragment {
     }
 
     //change fragment container to fragment This Week
-    private void getThisWeekFragment() {
+    private void getOtherDaysFragment() {
 
         binding.otherDays.setOnClickListener(v -> {
             binding.otherDays.setTextColor(ContextCompat.getColor(requireActivity(), R.color.blue));

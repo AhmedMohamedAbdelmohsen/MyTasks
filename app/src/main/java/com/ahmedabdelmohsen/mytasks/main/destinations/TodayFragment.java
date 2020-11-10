@@ -36,7 +36,6 @@ public class TodayFragment extends Fragment implements InterfaceRecyclerViewItem
     private TasksListAdapter adapter;
     private TasksViewModel viewModel;
     private InterfaceRecyclerViewItem listener;
-    private ArrayList<TaskModel> taskList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,8 +77,6 @@ public class TodayFragment extends Fragment implements InterfaceRecyclerViewItem
 
                         adapter = new TasksListAdapter(listener, (ArrayList<TaskModel>) taskModels);
                         binding.rvToday.setAdapter(adapter);
-                        taskList = (ArrayList<TaskModel>) taskModels;
-                        //   onnext((ArrayList<TaskModel>) taskModels);
                     }
 
 
@@ -96,9 +93,7 @@ public class TodayFragment extends Fragment implements InterfaceRecyclerViewItem
     }
 
     @Override
-    public void onTaskClick(int position) {
-        boolean status = taskList.get(position).isStatus();
-        int id = taskList.get(position).getId();
+    public void onTaskClick(int id, boolean status) {
         if (status) {
             viewModel.update(false, id)
                     .subscribeOn(Schedulers.computation())

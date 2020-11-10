@@ -29,6 +29,14 @@ public class Repository {
         return tasksDao.getAllTasksByOtherDate(today, tomorrow);
     }
 
+    public Observable<List<TaskModel>> getAllTasksByStatus(boolean status) {
+        return tasksDao.getAllTasksByStatus(status);
+    }
+
+    public Observable<List<TaskModel>> getAllTasks() {
+        return tasksDao.getAllTasks();
+    }
+
     public Completable update(boolean status, int id) {
         return tasksDao.update(status, id);
     }

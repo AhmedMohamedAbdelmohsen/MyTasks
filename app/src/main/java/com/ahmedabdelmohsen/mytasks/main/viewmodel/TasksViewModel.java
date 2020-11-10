@@ -33,6 +33,14 @@ public class TasksViewModel extends AndroidViewModel {
         return repository.getAllTasksByOtherDate(today, tomorrow);
     }
 
+    public Observable<List<TaskModel>> getAllTasksByStatus(boolean status) {
+        return repository.getAllTasksByStatus(status);
+    }
+
+    public Observable<List<TaskModel>> getAllTasks() {
+        return repository.getAllTasks();
+    }
+
     public Completable update(boolean status, int id) {
         return repository.update(status, id);
     }

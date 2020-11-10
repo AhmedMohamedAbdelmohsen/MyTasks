@@ -35,7 +35,6 @@ public class OtherDaysFragment extends Fragment implements InterfaceRecyclerView
     private TasksListAdapter adapter;
     private TasksViewModel viewModel;
     private InterfaceRecyclerViewItem listener;
-    private ArrayList<TaskModel> taskList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,7 +77,6 @@ public class OtherDaysFragment extends Fragment implements InterfaceRecyclerView
                     public void onNext(@io.reactivex.annotations.NonNull List<TaskModel> taskModels) {
                         adapter = new TasksListAdapter(listener, (ArrayList<TaskModel>) taskModels);
                         binding.rvThisWeek.setAdapter(adapter);
-                        taskList = (ArrayList<TaskModel>) taskModels;
                     }
 
                     @Override
@@ -94,9 +92,7 @@ public class OtherDaysFragment extends Fragment implements InterfaceRecyclerView
     }
 
     @Override
-    public void onTaskClick(int position) {
-        boolean status = taskList.get(position).isStatus();
-        int id = taskList.get(position).getId();
+    public void onTaskClick(int id, boolean status) {
         if (status) {
             viewModel.update(false, id)
                     .subscribeOn(Schedulers.computation())
