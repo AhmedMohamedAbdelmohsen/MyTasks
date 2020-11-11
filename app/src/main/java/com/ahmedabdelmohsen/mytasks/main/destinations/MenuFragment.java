@@ -51,5 +51,8 @@ public class MenuFragment extends Fragment {
         binding.tvDashboard.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(MenuFragmentDirections.actionMenuFragmentToDashboardFragment());
         });
+        binding.tvCalender.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(MenuFragmentDirections.actionMenuFragmentToCalenderFragment());
+        });
     }
 }

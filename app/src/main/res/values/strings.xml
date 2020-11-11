@@ -29,4 +29,10 @@
     <string name="all_tasks">ALL TASKS</string>
     <string name="pending">PENDING</string>
     <string name="completed">COMPLETED</string>
+    <string name="current_day">Today - </string>
+    <string name="_5">5</string>
+    <string name="today_you_have">Today you have: </string>
+    <string name="tomorrow_you_have">Tomorrow you have: </string>
+    <string name="on_this_date">On this date you have: </string>
+    <string name="empty_list">Empty list</string>
 </resources>

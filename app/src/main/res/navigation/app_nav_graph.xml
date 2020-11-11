@@ -37,10 +37,18 @@
         <action
             android:id="@+id/action_menuFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_calenderFragment"
+            app:destination="@id/calenderFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.ahmedabdelmohsen.mytasks.main.destinations.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/calenderFragment"
+        android:name="com.ahmedabdelmohsen.mytasks.main.destinations.CalenderFragment"
+        android:label="fragment_calender"
+        tools:layout="@layout/fragment_calender" />
 </navigation>

@@ -25,9 +25,9 @@ public class DashboardFragment extends Fragment {
     private FragmentDashboardBinding binding;
     private View view;
     private FragmentManager fragmentManager;
-    private PendingFragment pendingFragment = new PendingFragment();
-    private CompletedFragment completedFragment = new CompletedFragment();
-    private AllTasksFragment allTasksFragment = new AllTasksFragment();
+    private final PendingFragment pendingFragment = new PendingFragment();
+    private final CompletedFragment completedFragment = new CompletedFragment();
+    private final AllTasksFragment allTasksFragment = new AllTasksFragment();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

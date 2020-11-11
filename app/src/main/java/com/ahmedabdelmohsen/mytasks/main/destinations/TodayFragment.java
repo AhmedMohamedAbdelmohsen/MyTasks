@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.ahmedabdelmohsen.mytasks.InterfaceRecyclerViewItem;
 import com.ahmedabdelmohsen.mytasks.TasksListAdapter;
@@ -75,6 +76,11 @@ public class TodayFragment extends Fragment implements InterfaceRecyclerViewItem
                     @Override
                     public void onNext(@io.reactivex.annotations.NonNull List<TaskModel> taskModels) {
 
+                        if (taskModels.size() == 0) {
+                            binding.linearLayout.setVisibility(View.VISIBLE);
+                        } else {
+                            binding.linearLayout.setVisibility(View.GONE);
+                        }
                         adapter = new TasksListAdapter(listener, (ArrayList<TaskModel>) taskModels);
                         binding.rvToday.setAdapter(adapter);
                     }
