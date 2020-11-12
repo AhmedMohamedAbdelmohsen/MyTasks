@@ -94,4 +94,9 @@ public class PendingFragment extends Fragment implements InterfaceRecyclerViewIt
     public void onTaskClick(int id, boolean status) {
 
     }
+
+    @Override
+    public void onLongTaskClick(int id, String body) {
+
+    }
 }

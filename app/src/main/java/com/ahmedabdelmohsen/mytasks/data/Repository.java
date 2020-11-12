@@ -41,9 +41,12 @@ public class Repository {
         return tasksDao.update(status, id);
     }
 
-    public Completable updateData(TaskModel taskModel) {
-        return tasksDao.updateData(taskModel);
+    public Completable updateBody(String body, int id) {
+        return tasksDao.updateBody(body, id);
     }
 
+    public Completable deleteTask(int id) {
+        return tasksDao.deleteTask(id);
+    }
 
 }

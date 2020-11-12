@@ -39,7 +39,8 @@ public class CalenderFragment extends Fragment implements InterfaceRecyclerViewI
     private TasksListAdapter adapter;
     private TasksViewModel viewModel;
     private InterfaceRecyclerViewItem listener;
-    private String selectedDay;
+    private String todayDate;
+    private String tomorrowDate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,8 +64,21 @@ public class CalenderFragment extends Fragment implements InterfaceRecyclerViewI
 
     //set date today by default
     public void setDateByDefault() {
+        //today Date
         Calendar calendar = Calendar.getInstance();
-        newDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int year = calendar.get(Calendar.YEAR);
+        newDate = day + "/" + month + "/" + year;
+        todayDate = day + "/" + month + "/" + year;
+        //tomorrow Date
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.add(Calendar.DAY_OF_YEAR, 1);
+        int day2 = calendar2.get(Calendar.DAY_OF_MONTH);
+        int month2 = calendar2.get(Calendar.MONTH) + 1;
+        int year2 = calendar2.get(Calendar.YEAR);
+        tomorrowDate = day2 + "/" + month2 + "/" + year2;
+
     }
 
     //get Date from Calender View
@@ -72,7 +86,6 @@ public class CalenderFragment extends Fragment implements InterfaceRecyclerViewI
         binding.calendarView.setOnDateChangeListener((calendarView, year, month, day) -> {
             month = month + 1;
             newDate = day + "/" + month + "/" + year;
-            Toast.makeText(requireContext(), newDate, Toast.LENGTH_SHORT).show();
             getAllTasksByDate();
         });
 
@@ -94,12 +107,6 @@ public class CalenderFragment extends Fragment implements InterfaceRecyclerViewI
 
                     @Override
                     public void onNext(@io.reactivex.annotations.NonNull List<TaskModel> taskModels) {
-                        Calendar calendar = Calendar.getInstance();
-                        String todayDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
-                        Calendar calendar2 = Calendar.getInstance();
-                        calendar2.add(Calendar.DAY_OF_YEAR, 1);
-                        String tomorrowDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar2.getTime());
-
                         if (newDate.equals(todayDate)) {
                             binding.tvCurrentDay.setText(R.string.today_you_have);
                         } else if (newDate.equals(tomorrowDate)) {
@@ -135,6 +142,11 @@ public class CalenderFragment extends Fragment implements InterfaceRecyclerViewI
 
     @Override
     public void onTaskClick(int id, boolean status) {
+
+    }
+
+    @Override
+    public void onLongTaskClick(int id, String body) {
 
     }
 }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.ahmedabdelmohsen.mytasks.InterfaceRecyclerViewItem;
 import com.ahmedabdelmohsen.mytasks.TasksListAdapter;
 import com.ahmedabdelmohsen.mytasks.databinding.FragmentTomorrowBinding;
+import com.ahmedabdelmohsen.mytasks.dialogs.TaskDialog;
 import com.ahmedabdelmohsen.mytasks.main.viewmodel.TasksViewModel;
 import com.ahmedabdelmohsen.mytasks.pojo.TaskModel;
 
@@ -63,7 +64,10 @@ public class TomorrowFragment extends Fragment implements InterfaceRecyclerViewI
 
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, 1);
-        String tomorrowDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int year = calendar.get(Calendar.YEAR);
+        String tomorrowDate =  day + "/" + month + "/" + year;
 
         viewModel.getAllTasksDate(tomorrowDate).subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -138,5 +142,11 @@ public class TomorrowFragment extends Fragment implements InterfaceRecyclerViewI
                         }
                     });
         }
+    }
+
+    @Override
+    public void onLongTaskClick(int id, String body) {
+        TaskDialog taskDialog = new TaskDialog(requireActivity(), body, id);
+        taskDialog.show();
     }
 }

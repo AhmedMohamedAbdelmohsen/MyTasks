@@ -47,6 +47,14 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Task
             }
         });
 
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                listener.onLongTaskClick(task.getId(), task.getBody());
+                return true;
+            }
+        });
+
     }
 
     @Override

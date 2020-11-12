@@ -92,4 +92,9 @@ public class AllTasksFragment extends Fragment implements InterfaceRecyclerViewI
     public void onTaskClick(int id, boolean status) {
 
     }
+
+    @Override
+    public void onLongTaskClick(int id, String body) {
+
+    }
 }

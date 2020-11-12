@@ -45,8 +45,12 @@ public class TasksViewModel extends AndroidViewModel {
         return repository.update(status, id);
     }
 
-    public Completable updateData(TaskModel taskModel) {
-        return repository.updateData(taskModel);
+    public Completable updateBody(String body, int id) {
+        return repository.updateBody(body, id);
+    }
+
+    public Completable deleteTask(int id) {
+        return repository.deleteTask(id);
     }
 
 }

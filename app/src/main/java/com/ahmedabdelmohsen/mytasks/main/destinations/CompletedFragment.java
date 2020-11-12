@@ -94,4 +94,9 @@ public class CompletedFragment extends Fragment implements InterfaceRecyclerView
     public void onTaskClick(int id, boolean status) {
 
     }
+
+    @Override
+    public void onLongTaskClick(int id, String body) {
+
+    }
 }

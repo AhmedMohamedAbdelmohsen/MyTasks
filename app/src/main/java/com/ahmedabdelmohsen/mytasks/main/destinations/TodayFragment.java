@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.ahmedabdelmohsen.mytasks.InterfaceRecyclerViewItem;
 import com.ahmedabdelmohsen.mytasks.TasksListAdapter;
 import com.ahmedabdelmohsen.mytasks.databinding.FragmentTodayBinding;
+import com.ahmedabdelmohsen.mytasks.dialogs.TaskDialog;
 import com.ahmedabdelmohsen.mytasks.main.viewmodel.TasksViewModel;
 import com.ahmedabdelmohsen.mytasks.pojo.TaskModel;
 
@@ -63,7 +64,10 @@ public class TodayFragment extends Fragment implements InterfaceRecyclerViewItem
 
 
         Calendar calendar = Calendar.getInstance();
-        String todayDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int year = calendar.get(Calendar.YEAR);
+        String todayDate =  day + "/" + month + "/" + year;
 
         viewModel.getAllTasksDate(todayDate).subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -140,5 +144,11 @@ public class TodayFragment extends Fragment implements InterfaceRecyclerViewItem
                         }
                     });
         }
+    }
+
+    @Override
+    public void onLongTaskClick(int id, String body) {
+        TaskDialog taskDialog = new TaskDialog(requireActivity(), body, id);
+        taskDialog.show();
     }
 }

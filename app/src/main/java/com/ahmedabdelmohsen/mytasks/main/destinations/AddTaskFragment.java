@@ -1,5 +1,6 @@
 package com.ahmedabdelmohsen.mytasks.main.destinations;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -129,7 +130,8 @@ public class AddTaskFragment extends Fragment {
         materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
             @Override
             public void onPositiveButtonClick(Object selection) {
-                selectedDate = DateFormat.getDateInstance(DateFormat.SHORT).format(materialDatePicker.getSelection());
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                selectedDate = simpleDateFormat.format(materialDatePicker.getSelection());
                 Toast.makeText(requireActivity(), selectedDate, Toast.LENGTH_SHORT).show();
             }
         });
@@ -143,7 +145,11 @@ public class AddTaskFragment extends Fragment {
 
             calendar.clear();
             calendar = Calendar.getInstance(); // set calender
-            selectedDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            int month = calendar.get(Calendar.MONTH) + 1;
+            int year = calendar.get(Calendar.YEAR);
+            selectedDate =  day + "/" + month + "/" + year;
+           // selectedDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
             Toast.makeText(requireActivity(), selectedDate, Toast.LENGTH_SHORT).show();
         });
     }
@@ -157,7 +163,11 @@ public class AddTaskFragment extends Fragment {
             calendar.clear();
             calendar = Calendar.getInstance(); // set calender
             calendar.add(Calendar.DAY_OF_YEAR, 1);
-            selectedDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            int month = calendar.get(Calendar.MONTH) + 1;
+            int year = calendar.get(Calendar.YEAR);
+            selectedDate =  day + "/" + month + "/" + year;
+          //  selectedDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
             Toast.makeText(requireActivity(), selectedDate, Toast.LENGTH_SHORT).show();
         });
     }

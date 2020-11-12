@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/radius_dialog_background"
+    android:padding="15dp">
+
+    <EditText
+        android:id="@+id/et_body"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/write_your_task"
+        android:maxLines="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/iv_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_baseline_delete"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="@+id/et_body"
+        app:layout_constraintTop_toBottomOf="@+id/et_body" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="save"
+        app:layout_constraintEnd_toEndOf="@+id/et_body"
+        app:layout_constraintTop_toBottomOf="@+id/et_body" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

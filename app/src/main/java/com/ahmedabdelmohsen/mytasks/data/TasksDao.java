@@ -22,9 +22,6 @@ public interface TasksDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Completable addTask(TaskModel taskModel);
 
-//    @Query("select * from tasks_table where status =:status")
-//    public LiveData<List<TaskModel>> getAllTasksByStatus(boolean status);
-
     @Query("select * from tasks_table where date =:date")
     Observable<List<TaskModel>> getAllTasksByDate(String date);
 
@@ -40,6 +37,10 @@ public interface TasksDao {
     @Query("update tasks_table set status=:status where id = :id")
     Completable update(boolean status, int id);
 
-    @Update()
-    Completable updateData(TaskModel taskModel);
+    @Query("update tasks_table set body=:body where id = :id")
+    Completable updateBody(String body, int id);
+
+    @Query("delete from tasks_table where id=:id")
+    Completable deleteTask(int id);
+
 }
