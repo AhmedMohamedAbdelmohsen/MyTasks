@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,8 @@ import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.ahmedabdelmohsen.mytasks.R;
 import com.ahmedabdelmohsen.mytasks.main.viewmodel.TasksViewModel;
+
+import java.util.Locale;
 
 import io.reactivex.CompletableObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -34,6 +37,7 @@ public class TaskDialog extends Dialog {
     public String bodyTask;
     public int idTask;
     public TasksViewModel viewModel;
+    public TextToSpeech textToSpeech;
 
     public TaskDialog(@NonNull Activity activity, String bodyTask, int idTask) {
         super(activity);
@@ -59,10 +63,26 @@ public class TaskDialog extends Dialog {
 
         saveNewEditOfTask(); //save the new body of the task
         deleteTask(); //delete the task
+
+        textToSpeech = new TextToSpeech(activity, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int language = textToSpeech.setLanguage(Locale.ENGLISH);
+                    if (language == TextToSpeech.LANG_MISSING_DATA || language == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Toast.makeText(activity, "your phone language must be english to hear your task speech", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(activity, body.getText().toString(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(activity, "initialization failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     public void saveNewEditOfTask() {
-        save.setOnClickListener(v -> {
+       /*save.setOnClickListener(v -> {
             viewModel.updateBody(body.getText().toString(), idTask)
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -83,7 +103,15 @@ public class TaskDialog extends Dialog {
 
                         }
                     });
+        });*/
+
+        save.setOnClickListener(v -> {
+            //textToSpeech.setPitch(0.1f);
+            textToSpeech.setSpeechRate(0.5f);
+            String s = body.getText().toString();
+            int speech = textToSpeech.speak(s, TextToSpeech.QUEUE_FLUSH, null);
         });
+
     }
 
     public void deleteTask() {
@@ -124,5 +152,14 @@ public class TaskDialog extends Dialog {
             });
             builder.create().show();
         });
+    }
+
+    @Override
+    protected void onStop() {
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+        super.onStop();
     }
 }
