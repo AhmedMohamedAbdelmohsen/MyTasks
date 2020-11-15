@@ -53,6 +53,7 @@ public class AddTaskFragment extends Fragment {
     private int day, month, year, hour, minute;
     private long alarmStartTime;
     private int notificationId = 1;
+    private int requestCode = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -149,7 +150,6 @@ public class AddTaskFragment extends Fragment {
                 } catch (ParseException e) {
                     Toast.makeText(requireActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(requireActivity(), selectedDate, Toast.LENGTH_SHORT).show();
 
                 // set time for notification
                 timePickerDialog();
@@ -203,14 +203,14 @@ public class AddTaskFragment extends Fragment {
     }
 
     public void timePickerDialog() {
-        Calendar calendar = Calendar.getInstance();
-        final int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
-        final int currentMinute = calendar.get(Calendar.MINUTE);
+        Calendar currentTime = Calendar.getInstance();
+        final int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
+        final int currentMinute = currentTime.get(Calendar.MINUTE);
         TimePickerDialog timePickerDialog = new TimePickerDialog(requireActivity(),
                 (TimePickerDialog.OnTimeSetListener) (timePicker, hourOfDay, minuteOfHour) -> {
                     hour = hourOfDay;
                     minute = minuteOfHour;
-                    Toast.makeText(requireActivity(), day + "/" + month + "/" + year + "-" + hour + ":" + minute, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(requireActivity(), day + "/" + month + "/" + year + "-" + hour + ":" + minute, Toast.LENGTH_LONG).show();
                 }, currentHour, currentMinute, false);
         timePickerDialog.show();
     }
@@ -226,13 +226,13 @@ public class AddTaskFragment extends Fragment {
 
         long alarmStartTime2 = startTime.getTimeInMillis();
         String body = binding.editText.getText().toString();
-        Toast.makeText(requireActivity(), body, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getActivity(), AlarmReceiver.class);
         intent.putExtra("notificationId", notificationId);
         intent.putExtra("message", body);
+        intent.putExtra("requestCode", requestCode);
 
         PendingIntent pendingIntent =
-                PendingIntent.getBroadcast(getActivity(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                PendingIntent.getBroadcast(getActivity(), requestCode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
 

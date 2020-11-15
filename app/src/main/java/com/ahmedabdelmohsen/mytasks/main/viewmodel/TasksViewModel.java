@@ -53,4 +53,12 @@ public class TasksViewModel extends AndroidViewModel {
         return repository.deleteTask(id);
     }
 
+    public Completable deleteAllTasksByDate(String date) {
+        return repository.deleteAllTasksByDate(date);
+    }
+
+    public Completable deleteAllTasksByOtherDate(String today, String tomorrow) {
+        return repository.deleteAllTasksByOtherDate(today, tomorrow);
+    }
+
 }

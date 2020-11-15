@@ -49,4 +49,11 @@ public class Repository {
         return tasksDao.deleteTask(id);
     }
 
+    public Completable deleteAllTasksByDate(String date) {
+        return tasksDao.deleteAllTasksByDate(date);
+    }
+
+    public Completable deleteAllTasksByOtherDate(String today, String tomorrow) {
+        return tasksDao.deleteAllTasksByOtherDate(today, tomorrow);
+    }
 }

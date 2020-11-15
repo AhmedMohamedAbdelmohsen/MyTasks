@@ -18,10 +18,11 @@ public class AlarmReceiver extends BroadcastReceiver {
         // Get id & message
         int notificationId = intent.getIntExtra("notificationId", 0);
         final String message = intent.getStringExtra("message");
+        int requestCode = intent.getIntExtra("requestCode",0);
 
         // Call MainActivity when notification is tapped.
         Intent mainIntent = new Intent(context, MainActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
+        PendingIntent contentIntent = PendingIntent.getActivity(context, requestCode, mainIntent, 0);
 
         // NotificationManager
         NotificationManager notificationManager =

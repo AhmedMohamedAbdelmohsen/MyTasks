@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:text="@string/empty_list"
             android:textColor="@color/light_blue"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_18"
             android:textStyle="bold" />
     </LinearLayout>
 

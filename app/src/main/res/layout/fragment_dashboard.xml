@@ -27,7 +27,7 @@
         android:includeFontPadding="false"
         android:text="@string/dashboard"
         android:textColor="@color/black"
-        android:textSize="35sp"
+        android:textSize="@dimen/font_34"
         app:layout_constraintStart_toStartOf="@id/ibtn_back"
         app:layout_constraintTop_toBottomOf="@id/ibtn_back" />
 
@@ -38,7 +38,7 @@
         android:layout_marginEnd="20dp"
         android:text="@string/mar_2020"
         android:textColor="@color/grey"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
@@ -63,7 +63,7 @@
             android:rotation="270"
             android:text="@string/completed"
             android:textColor="@color/blue"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="bold" />
 
         <TextView
@@ -75,7 +75,7 @@
             android:rotation="270"
             android:text="@string/pending"
             android:textColor="@color/grey"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="bold" />
 
         <TextView
@@ -87,7 +87,7 @@
             android:rotation="270"
             android:text="@string/all_tasks"
             android:textColor="@color/grey"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_16"
             android:textStyle="bold" />
     </LinearLayout>
 

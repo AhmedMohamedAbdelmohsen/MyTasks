@@ -15,7 +15,7 @@
         android:layout_marginTop="50dp"
         android:text="@string/add_new"
         android:textColor="@color/blue"
-        android:textSize="40sp"
+        android:textSize="@dimen/font_38"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +35,7 @@
             android:layout_height="100dp"
             android:layout_marginBottom="40dp"
             android:hint="@string/enter_task"
-            android:textSize="30sp" />
+            android:textSize="@dimen/font_28" />
 
         <TextView
             android:id="@+id/tv_when"
@@ -44,7 +44,7 @@
             android:layout_marginBottom="30dp"
             android:text="@string/when"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="@dimen/font_16" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -61,7 +61,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/today_lower"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_tomorrow"
@@ -70,7 +70,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/tomorrow_lower"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_select_date"
@@ -79,7 +79,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/select_date"
-                android:textSize="20sp" />
+                android:textSize="@dimen/font_18" />
         </LinearLayout>
     </LinearLayout>
 
@@ -92,7 +92,7 @@
         android:text="@string/add_task"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="@dimen/font_20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

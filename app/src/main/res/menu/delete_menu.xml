@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/today_tasks"
+        android:title="@string/delete_all_today_tasks" />
+    <item
+        android:id="@+id/tomorrow_tasks"
+        android:title="@string/delete_all_tomorrow_tasks" />
+    <item
+        android:id="@+id/other_tasks"
+        android:title="@string/delete_all_other_tasks" />
+</menu>

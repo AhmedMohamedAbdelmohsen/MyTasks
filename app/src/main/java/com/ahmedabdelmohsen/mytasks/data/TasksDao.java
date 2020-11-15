@@ -43,4 +43,9 @@ public interface TasksDao {
     @Query("delete from tasks_table where id=:id")
     Completable deleteTask(int id);
 
+    @Query("delete from tasks_table where date =:date")
+    Completable deleteAllTasksByDate(String date);
+
+    @Query("delete from tasks_table where date !=:today and date !=:tomorrow")
+    Completable deleteAllTasksByOtherDate(String today, String tomorrow);
 }

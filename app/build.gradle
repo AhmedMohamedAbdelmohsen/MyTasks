@@ -63,6 +63,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:2.2.0"
+    //Tap Target
+    implementation 'uk.co.samuelwall:material-tap-target-prompt:3.0.1'
+
 
 
 }

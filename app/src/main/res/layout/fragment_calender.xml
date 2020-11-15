@@ -27,7 +27,7 @@
         android:includeFontPadding="false"
         android:text="@string/calender"
         android:textColor="@color/blue"
-        android:textSize="35sp"
+        android:textSize="@dimen/font_34"
         app:layout_constraintStart_toStartOf="@id/ibtn_back"
         app:layout_constraintTop_toBottomOf="@id/ibtn_back" />
 
@@ -48,7 +48,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/current_day"
         android:textColor="@color/blue"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintStart_toStartOf="@+id/tv_title"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
@@ -59,7 +59,7 @@
         android:layout_margin="5dp"
         android:text="@string/_5"
         android:textColor="@android:color/holo_red_dark"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="@+id/tv_current_day"
         app:layout_constraintStart_toEndOf="@+id/tv_current_day"
         app:layout_constraintTop_toTopOf="@+id/tv_current_day" />
@@ -71,7 +71,7 @@
         android:layout_margin="5dp"
         android:text="@string/tasks"
         android:textColor="@color/blue"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_16"
         app:layout_constraintBottom_toBottomOf="@+id/tv_number_tasks"
         app:layout_constraintStart_toEndOf="@+id/tv_number_tasks"
         app:layout_constraintTop_toTopOf="@+id/tv_number_tasks" />
