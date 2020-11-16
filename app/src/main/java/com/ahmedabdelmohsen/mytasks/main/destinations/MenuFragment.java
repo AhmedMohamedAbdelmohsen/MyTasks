@@ -56,21 +56,31 @@ public class MenuFragment extends Fragment {
         binding.tvCalender.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(MenuFragmentDirections.actionMenuFragmentToCalenderFragment());
         });
-        binding.tvRateUs.setOnClickListener(v->{
+        binding.tvRateUs.setOnClickListener(v -> {
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse("market://details?id=" + requireActivity().getPackageName())));
-            }catch (Exception e){
+            } catch (Exception e) {
                 startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse("market://details?id=" + requireActivity().getPackageName())));
             }
         });
-        binding.tvOurWorks.setOnClickListener(v->{
+        binding.tvOurWorks.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(
                     "https://play.google.com/store/apps/developer?id=Ahmed+M.AbdElmohsen"));
             intent.setPackage("com.android.vending");
             startActivity(intent);
+        });
+        binding.linearShare.setOnClickListener(v -> {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "MyTasks");
+            String shareMessage= "\nHey check out my app MyTasks:\n\n";
+            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=com.ahmedabdelmohsen.mytasks";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, "Choose one"));
+
         });
     }
 }

@@ -18,7 +18,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         // Get id & message
         int notificationId = intent.getIntExtra("notificationId", 0);
         final String message = intent.getStringExtra("message");
-        int requestCode = intent.getIntExtra("requestCode",0);
+        int requestCode = intent.getIntExtra("requestCode", 0);
 
         // Call MainActivity when notification is tapped.
         Intent mainIntent = new Intent(context, MainActivity.class);
@@ -41,8 +41,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_tasks)
                 .setContentTitle("My Tasks")
-                .setContentText(message + requestCode)
+                .setContentText(message)
                 .setContentIntent(contentIntent)
+                .setVibrate(new long[]{2000})
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true);
 

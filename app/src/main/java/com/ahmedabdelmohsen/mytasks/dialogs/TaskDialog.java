@@ -37,7 +37,7 @@ public class TaskDialog extends Dialog {
 
     public Activity activity;
     public EditText body;
-    public ImageButton delete;
+    public ImageButton delete, hear;
     public Button save;
     public String bodyTask;
     public int idTask;
@@ -64,6 +64,7 @@ public class TaskDialog extends Dialog {
         viewModel = new ViewModelProvider((ViewModelStoreOwner) activity).get(TasksViewModel.class);
         body = findViewById(R.id.et_body);
         delete = findViewById(R.id.iv_delete);
+        hear = findViewById(R.id.iv_hear);
         save = findViewById(R.id.btn_save);
 
         body.setText(bodyTask);
@@ -86,10 +87,12 @@ public class TaskDialog extends Dialog {
                 }
             }
         });
+        hearVoice();
     }
 
     public void saveNewEditOfTask() {
-       /*save.setOnClickListener(v -> {
+        save.setOnClickListener(v -> {
+            Toast.makeText(activity, "Task has updated successfully", Toast.LENGTH_SHORT).show();
             viewModel.updateBody(body.getText().toString(), idTask)
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -101,7 +104,8 @@ public class TaskDialog extends Dialog {
 
                         @Override
                         public void onComplete() {
-                            Toast.makeText(activity, "Task has updated successfully", Toast.LENGTH_SHORT).show();
+                            //textToSpeech.setPitch(0.1f);
+
                             dismiss();
                         }
 
@@ -110,15 +114,16 @@ public class TaskDialog extends Dialog {
 
                         }
                     });
-        });*/
 
-        save.setOnClickListener(v -> {
-            //textToSpeech.setPitch(0.1f);
-            textToSpeech.setSpeechRate(0.5f);
+        });
+    }
+
+    public void hearVoice() {
+        hear.setOnClickListener(v -> {
+            textToSpeech.setSpeechRate(0.7f);
             String s = body.getText().toString();
             int speech = textToSpeech.speak(s, TextToSpeech.QUEUE_FLUSH, null);
         });
-
     }
 
     public void deleteTask() {

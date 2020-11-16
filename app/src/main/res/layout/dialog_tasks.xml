@@ -21,10 +21,21 @@
         android:id="@+id/iv_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_baseline_delete"
-        android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="@+id/et_body"
+        app:layout_constraintTop_toBottomOf="@+id/et_body" />
+
+    <ImageButton
+        android:id="@+id/iv_hear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_baseline_hearing_24"
+        app:layout_constraintEnd_toStartOf="@+id/btn_save"
+        app:layout_constraintStart_toEndOf="@+id/iv_delete"
         app:layout_constraintTop_toBottomOf="@+id/et_body" />
 
     <Button

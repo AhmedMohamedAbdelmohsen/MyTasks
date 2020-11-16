@@ -1,6 +1,7 @@
 package com.ahmedabdelmohsen.mytasks.main.destinations;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
@@ -20,6 +21,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.ahmedabdelmohsen.mytasks.AlarmReceiver;
@@ -55,7 +57,7 @@ public class AddTaskFragment extends Fragment {
     private long alarmStartTime;
     private int notificationId = 1;
     private static final String SHARED_PREFS = "sharedPrefs";
-    private  int requestCode = 1;
+    private int requestCode = 1;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -84,6 +86,7 @@ public class AddTaskFragment extends Fragment {
         selectTomorrow();
         selectDate();
         addTask();
+        hideKeyboard();
     }
 
     public void addTask() {
@@ -250,5 +253,12 @@ public class AddTaskFragment extends Fragment {
         AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime2, pendingIntent);
+    }
+    //hide keyboard when touch outside
+    public void hideKeyboard() {
+       binding.view.setOnClickListener(v->{
+           InputMethodManager inputMethodManager = (InputMethodManager) requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+           inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+       });
     }
 }
