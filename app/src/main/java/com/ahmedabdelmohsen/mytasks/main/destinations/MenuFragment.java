@@ -1,5 +1,7 @@
 package com.ahmedabdelmohsen.mytasks.main.destinations;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -53,6 +55,22 @@ public class MenuFragment extends Fragment {
         });
         binding.tvCalender.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(MenuFragmentDirections.actionMenuFragmentToCalenderFragment());
+        });
+        binding.tvRateUs.setOnClickListener(v->{
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=" + "com.ahmedabdelmohsen.whereitmadein")));
+            }catch (Exception e){
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=" + requireActivity().getPackageName())));
+            }
+        });
+        binding.tvOurWorks.setOnClickListener(v->{
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(
+                    "https://play.google.com/store/apps/developer?id=Ahmed+M.AbdElmohsen"));
+            intent.setPackage("com.android.vending");
+            startActivity(intent);
         });
     }
 }

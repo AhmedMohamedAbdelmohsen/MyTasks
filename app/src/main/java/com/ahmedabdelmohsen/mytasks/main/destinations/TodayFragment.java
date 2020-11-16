@@ -81,9 +81,9 @@ public class TodayFragment extends Fragment implements InterfaceRecyclerViewItem
                     public void onNext(@io.reactivex.annotations.NonNull List<TaskModel> taskModels) {
 
                         if (taskModels.size() == 0) {
-                            binding.tvNoList.setVisibility(View.VISIBLE);
+                            binding.linearLayout.setVisibility(View.VISIBLE);
                         } else {
-                            binding.tvNoList.setVisibility(View.GONE);
+                            binding.linearLayout.setVisibility(View.GONE);
                         }
                         adapter = new TasksListAdapter(listener, (ArrayList<TaskModel>) taskModels);
                         binding.rvToday.setAdapter(adapter);

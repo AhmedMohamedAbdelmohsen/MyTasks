@@ -20,8 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical"
         android:visibility="gone"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/rv_tomorrow"
         app:layout_constraintEnd_toEndOf="@+id/rv_tomorrow"
         app:layout_constraintStart_toStartOf="@+id/rv_tomorrow"
@@ -32,15 +32,14 @@
             android:id="@+id/iv_no_list"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/no_list" />
+            android:src="@drawable/ic_no_list" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/empty_list"
-            android:textColor="@color/light_blue"
-            android:textSize="@dimen/font_18"
-            android:textStyle="bold" />
+            android:textColor="@color/blue"
+            android:textSize="@dimen/font_14" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
