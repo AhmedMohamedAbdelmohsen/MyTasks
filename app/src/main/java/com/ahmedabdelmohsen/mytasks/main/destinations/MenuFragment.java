@@ -59,7 +59,7 @@ public class MenuFragment extends Fragment {
         binding.tvRateUs.setOnClickListener(v->{
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id=" + "com.ahmedabdelmohsen.whereitmadein")));
+                        Uri.parse("market://details?id=" + requireActivity().getPackageName())));
             }catch (Exception e){
                 startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse("market://details?id=" + requireActivity().getPackageName())));

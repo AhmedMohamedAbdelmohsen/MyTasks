@@ -1,9 +1,13 @@
 package com.ahmedabdelmohsen.mytasks.dialogs;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
+import com.ahmedabdelmohsen.mytasks.AlarmReceiver;
 import com.ahmedabdelmohsen.mytasks.R;
 import com.ahmedabdelmohsen.mytasks.main.viewmodel.TasksViewModel;
 
@@ -36,14 +41,16 @@ public class TaskDialog extends Dialog {
     public Button save;
     public String bodyTask;
     public int idTask;
+    public int requestCodeTask;
     public TasksViewModel viewModel;
     public TextToSpeech textToSpeech;
 
-    public TaskDialog(@NonNull Activity activity, String bodyTask, int idTask) {
+    public TaskDialog(@NonNull Activity activity, String bodyTask, int idTask, int requestCodeTask) {
         super(activity);
         this.activity = activity;
         this.bodyTask = bodyTask;
         this.idTask = idTask;
+        this.requestCodeTask = requestCodeTask;
     }
 
     @Override
@@ -133,6 +140,11 @@ public class TaskDialog extends Dialog {
 
                                 @Override
                                 public void onComplete() {
+                                    AlarmManager alarmManager = (AlarmManager) activity.getSystemService(Context.ALARM_SERVICE);
+                                    Intent intent = new Intent(activity, AlarmReceiver.class);
+                                    PendingIntent pendingIntent =
+                                            PendingIntent.getBroadcast(activity, requestCodeTask, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                                    alarmManager.cancel(pendingIntent);
                                     Toast.makeText(activity, "Task has deleted successfully", Toast.LENGTH_SHORT).show();
                                     dismiss();
                                 }

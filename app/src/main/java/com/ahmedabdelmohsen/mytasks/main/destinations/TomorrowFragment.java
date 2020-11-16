@@ -145,8 +145,8 @@ public class TomorrowFragment extends Fragment implements InterfaceRecyclerViewI
     }
 
     @Override
-    public void onLongTaskClick(int id, String body) {
-        TaskDialog taskDialog = new TaskDialog(requireActivity(), body, id);
+    public void onLongTaskClick(int id, String body, int requestCode) {
+        TaskDialog taskDialog = new TaskDialog(requireActivity(), body, id,requestCode);
         taskDialog.show();
     }
 }

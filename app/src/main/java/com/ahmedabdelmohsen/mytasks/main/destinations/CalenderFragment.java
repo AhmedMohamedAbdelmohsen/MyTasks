@@ -146,7 +146,7 @@ public class CalenderFragment extends Fragment implements InterfaceRecyclerViewI
     }
 
     @Override
-    public void onLongTaskClick(int id, String body) {
+    public void onLongTaskClick(int id, String body, int requestCode) {
 
     }
 }

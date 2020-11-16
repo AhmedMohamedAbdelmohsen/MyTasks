@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -53,7 +54,9 @@ public class AddTaskFragment extends Fragment {
     private int day, month, year, hour, minute;
     private long alarmStartTime;
     private int notificationId = 1;
-    private int requestCode = 1;
+    private static final String SHARED_PREFS = "sharedPrefs";
+    private  int requestCode = 1;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,6 +67,7 @@ public class AddTaskFragment extends Fragment {
         return view;
     }
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -71,6 +75,10 @@ public class AddTaskFragment extends Fragment {
         viewModel = new ViewModelProvider(requireActivity()).get(TasksViewModel.class); //set view model
         calendar = Calendar.getInstance(); // set calender
         startTimeNotification = Calendar.getInstance();
+
+        //set shred preference
+        sharedPreferences = requireActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        requestCode = sharedPreferences.getInt("requestCode", 1);
 
         selectToday();
         selectTomorrow();
@@ -88,7 +96,7 @@ public class AddTaskFragment extends Fragment {
                 binding.tvWhen.setError("please choose day");
                 Toast.makeText(requireActivity(), "please choose day", Toast.LENGTH_SHORT).show();
             } else {
-                viewModel.addTask(new TaskModel(body, selectedDate, false))
+                viewModel.addTask(new TaskModel(body, selectedDate, false, requestCode))
                         .subscribeOn(Schedulers.computation())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new CompletableObserver() {
@@ -217,6 +225,12 @@ public class AddTaskFragment extends Fragment {
 
     public void setIntentNotification() {
 
+        requestCode++;
+        //sharedPreferences = requireActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("requestCode", requestCode);
+        editor.apply();
+
         // Create time.
         Calendar startTime = Calendar.getInstance();
         startTime.setTime(calendar.getTime());
@@ -230,7 +244,6 @@ public class AddTaskFragment extends Fragment {
         intent.putExtra("notificationId", notificationId);
         intent.putExtra("message", body);
         intent.putExtra("requestCode", requestCode);
-
         PendingIntent pendingIntent =
                 PendingIntent.getBroadcast(getActivity(), requestCode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 

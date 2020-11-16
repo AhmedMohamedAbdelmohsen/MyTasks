@@ -10,11 +10,21 @@ public class TaskModel {
     private String body;
     private String date;
     private boolean status;
+    private int requestCode;
 
-    public TaskModel(String body, String date, boolean status) {
+    public TaskModel(String body, String date, boolean status, int requestCode) {
         this.body = body;
         this.date = date;
         this.status = status;
+        this.requestCode = requestCode;
+    }
+
+    public int getRequestCode() {
+        return requestCode;
+    }
+
+    public void setRequestCode(int requestCode) {
+        this.requestCode = requestCode;
     }
 
     public int getId() {

@@ -31,7 +31,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // For API 26 and above
             CharSequence channelName = "My Notification";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            int importance = NotificationManager.IMPORTANCE_HIGH;
 
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, channelName, importance);
             notificationManager.createNotificationChannel(channel);
@@ -41,9 +41,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_tasks)
                 .setContentTitle("My Tasks")
-                .setContentText(message)
+                .setContentText(message + requestCode)
                 .setContentIntent(contentIntent)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true);
 
         // Notify
