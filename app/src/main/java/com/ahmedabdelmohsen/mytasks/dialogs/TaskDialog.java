@@ -120,6 +120,7 @@ public class TaskDialog extends Dialog {
 
     public void hearVoice() {
         hear.setOnClickListener(v -> {
+            Toast.makeText(activity, "this is work only if the text is english", Toast.LENGTH_SHORT).show();
             textToSpeech.setSpeechRate(0.7f);
             String s = body.getText().toString();
             int speech = textToSpeech.speak(s, TextToSpeech.QUEUE_FLUSH, null);
